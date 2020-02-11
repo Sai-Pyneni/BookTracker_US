@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Login.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="userTable">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userRole" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="isActive" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="userFName" Type="varchar" MaxLength="50" />
+    <Property Name="userLName" Type="varchar" MaxLength="50" />
+    <Property Name="userPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userEmail" Type="varchar" MaxLength="50" />
+    <Property Name="ResetPasswordCode" Type="nchar" MaxLength="100" />
+    <Property Name="LastUpdated" Type="datetime" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="EditedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="LoginStoreContainer">
+    <EntitySet Name="userTable" EntityType="Self.userTable" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

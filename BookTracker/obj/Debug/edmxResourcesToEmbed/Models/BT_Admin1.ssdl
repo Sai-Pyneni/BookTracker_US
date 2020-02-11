@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BT_Entity.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="accountAccess">
+    <Key>
+      <PropertyRef Name="accessID" />
+    </Key>
+    <Property Name="accessID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="acctNo" Type="int" Nullable="false" />
+    <Property Name="acctManagers" Type="int" Nullable="false" />
+    <Property Name="acctAccountant" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="accountCategoryTable">
+    <Key>
+      <PropertyRef Name="acctCatID" />
+    </Key>
+    <Property Name="acctCatID" Type="int" Nullable="false" />
+    <Property Name="catName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="accountsTable">
+    <Key>
+      <PropertyRef Name="acctNo" />
+    </Key>
+    <Property Name="acctNo" Type="int" Nullable="false" />
+    <Property Name="acctName" Type="varchar" MaxLength="50" />
+    <Property Name="acctCat" Type="int" Nullable="false" />
+    <Property Name="acctSubCat" Type="int" Nullable="false" />
+    <Property Name="totalDebits" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+    <Property Name="totalCredits" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+    <Property Name="balance" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+    <Property Name="initialBalace" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+    <Property Name="acctTerm" Type="int" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="comments" Type="varchar" MaxLength="250" />
+    <Property Name="editedBy" Type="int" />
+    <Property Name="dateCreated" Type="datetime" />
+    <Property Name="dateEdited" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="acctStateID" Type="int" />
+  </EntityType>
+  <EntityType Name="accountStateTable">
+    <Key>
+      <PropertyRef Name="acctStateID" />
+    </Key>
+    <Property Name="acctStateID" Type="int" Nullable="false" />
+    <Property Name="actState" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="accountSubCategoryTable">
+    <Key>
+      <PropertyRef Name="acctSubCatID" />
+    </Key>
+    <Property Name="acctSubCatID" Type="int" Nullable="false" />
+    <Property Name="acctSubCatName" Type="varchar" MaxLength="50" />
+    <Property Name="category" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="accountTermTable">
+    <Key>
+      <PropertyRef Name="acctTermID" />
+    </Key>
+    <Property Name="acctTermID" Type="int" Nullable="false" />
+    <Property Name="termName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="attachTable">
+    <Key>
+      <PropertyRef Name="attachID" />
+    </Key>
+    <Property Name="attachID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="journalID" Type="int" Nullable="false" />
+    <Property Name="attachLocation" Type="varchar" MaxLength="200" />
+    <Property Name="attachContents" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="eventLog">
+    <Key>
+      <PropertyRef Name="eventID" />
+    </Key>
+    <Property Name="eventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="eventTimeDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="userID" Type="int" />
+    <Property Name="fromPage" Type="varchar" MaxLength="50" />
+    <Property Name="toPage" Type="varchar" MaxLength="50" />
+    <Property Name="journalID" Type="int" />
+    <Property Name="transactionID" Type="int" />
+    <Property Name="attachID" Type="int" />
+    <Property Name="ledgerID" Type="int" />
+    <Property Name="userID2" Type="int" />
+    <Property Name="eventDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="journalTable">
+    <Key>
+      <PropertyRef Name="journalID" />
+    </Key>
+    <Property Name="journalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="preparorID" Type="int" Nullable="false" />
+    <Property Name="comments" Type="varchar" MaxLength="400" />
+    <Property Name="approverID" Type="int" Nullable="false" />
+    <Property Name="isAttach" Type="int" Nullable="false" />
+    <Property Name="journalTypeID" Type="int" />
+    <Property Name="datePrepared" Type="datetime" />
+    <Property Name="journalStatus" Type="int" />
+    <Property Name="reason" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="journalTypesTable">
+    <Key>
+      <PropertyRef Name="journalTypeID" />
+    </Key>
+    <Property Name="journalTypeID" Type="int" Nullable="false" />
+    <Property Name="journalType" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ledgerTable">
+    <Key>
+      <PropertyRef Name="ledgerID" />
+    </Key>
+    <Property Name="ledgerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="journalID" Type="int" Nullable="false" />
+    <Property Name="approvalDate" Type="date" />
+    <Property Name="acctNo" Type="int" Nullable="false" />
+    <Property Name="balance" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+    <Property Name="debits" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="credits" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="lStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="passwordTable">
+    <Key>
+      <PropertyRef Name="passID" />
+    </Key>
+    <Property Name="passID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="currentPass" Type="varchar" MaxLength="100" />
+    <Property Name="password2" Type="varchar" MaxLength="100" />
+    <Property Name="password3" Type="varchar" MaxLength="100" />
+    <Property Name="password4" Type="varchar" MaxLength="100" />
+    <Property Name="password5" Type="varchar" MaxLength="100" />
+    <Property Name="resetPasswordCode" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="requestTable">
+    <Key>
+      <PropertyRef Name="requestID" />
+    </Key>
+    <Property Name="requestID" Type="int" Nullable="false" />
+    <Property Name="requestAcct" Type="int" />
+    <Property Name="request" Type="varchar" MaxLength="500" />
+    <Property Name="requestStatus" Type="varchar" MaxLength="50" />
+    <Property Name="requestedBy" Type="int" />
+    <Property Name="requestFilledBy" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="transactionEntryTable">
+    <Key>
+      <PropertyRef Name="transactionID" />
+    </Key>
+    <Property Name="transactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="transactionType" Type="int" Nullable="false" />
+    <Property Name="transactionAmount" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+    <Property Name="acctNo" Type="int" Nullable="false" />
+    <Property Name="journalID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="transactionStatusTable">
+    <Key>
+      <PropertyRef Name="transStatusID" />
+    </Key>
+    <Property Name="transStatusID" Type="int" Nullable="false" />
+    <Property Name="transStatus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="transactionTypeTable">
+    <Key>
+      <PropertyRef Name="transactionTypeID" />
+    </Key>
+    <Property Name="transactionTypeID" Type="int" Nullable="false" />
+    <Property Name="transactionType" Type="varchar" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="userRoleTable">
+    <Key>
+      <PropertyRef Name="userRoleID" />
+    </Key>
+    <Property Name="userRoleID" Type="int" Nullable="false" />
+    <Property Name="userRole" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="userStateTable">
+    <Key>
+      <PropertyRef Name="userStateID" />
+    </Key>
+    <Property Name="userStateID" Type="int" Nullable="false" />
+    <Property Name="userState" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="userTable">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="16" />
+    <Property Name="userRoleID" Type="int" Nullable="false" />
+    <Property Name="userStateID" Type="int" Nullable="false" />
+    <Property Name="dateCreated" Type="date" />
+    <Property Name="lastUpdated" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="userFName" Type="varchar" MaxLength="30" />
+    <Property Name="userLName" Type="varchar" MaxLength="30" />
+    <Property Name="userPhone" Type="varchar" MaxLength="20" />
+    <Property Name="userEMail" Type="varchar" MaxLength="50" />
+    <Property Name="userPassword" Type="varchar" MaxLength="100" />
+    <Property Name="resetPasswordCode" Type="varchar" MaxLength="100" />
+    <Property Name="createdBy" Type="int" Nullable="false" />
+    <Property Name="editedBy" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__accountsT__acctC__367C1819">
+    <End Role="accountCategoryTable" Type="Self.accountCategoryTable" Multiplicity="1" />
+    <End Role="accountsTable" Type="Self.accountsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountCategoryTable">
+        <PropertyRef Name="acctCatID" />
+      </Principal>
+      <Dependent Role="accountsTable">
+        <PropertyRef Name="acctCat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__accountsT__acctS__37703C52">
+    <End Role="accountSubCategoryTable" Type="Self.accountSubCategoryTable" Multiplicity="1" />
+    <End Role="accountsTable" Type="Self.accountsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountSubCategoryTable">
+        <PropertyRef Name="acctSubCatID" />
+      </Principal>
+      <Dependent Role="accountsTable">
+        <PropertyRef Name="acctSubCat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__accountsT__acctS__607251E5">
+    <End Role="accountStateTable" Type="Self.accountStateTable" Multiplicity="0..1" />
+    <End Role="accountsTable" Type="Self.accountsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountStateTable">
+        <PropertyRef Name="acctStateID" />
+      </Principal>
+      <Dependent Role="accountsTable">
+        <PropertyRef Name="acctStateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__accountsT__acctT__5CA1C101">
+    <End Role="accountTermTable" Type="Self.accountTermTable" Multiplicity="0..1" />
+    <End Role="accountsTable" Type="Self.accountsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountTermTable">
+        <PropertyRef Name="acctTermID" />
+      </Principal>
+      <Dependent Role="accountsTable">
+        <PropertyRef Name="acctTerm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__accountSu__categ__32AB8735">
+    <End Role="accountCategoryTable" Type="Self.accountCategoryTable" Multiplicity="1" />
+    <End Role="accountSubCategoryTable" Type="Self.accountSubCategoryTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountCategoryTable">
+        <PropertyRef Name="acctCatID" />
+      </Principal>
+      <Dependent Role="accountSubCategoryTable">
+        <PropertyRef Name="category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__attachTab__journ__42E1EEFE">
+    <End Role="journalTable" Type="Self.journalTable" Multiplicity="1" />
+    <End Role="attachTable" Type="Self.attachTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="journalTable">
+        <PropertyRef Name="journalID" />
+      </Principal>
+      <Dependent Role="attachTable">
+        <PropertyRef Name="journalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__journalTa__appro__3F115E1A">
+    <End Role="userTable" Type="Self.userTable" Multiplicity="1" />
+    <End Role="journalTable" Type="Self.journalTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userTable">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="journalTable">
+        <PropertyRef Name="approverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__journalTa__journ__662B2B3B">
+    <End Role="journalTypesTable" Type="Self.journalTypesTable" Multiplicity="0..1" />
+    <End Role="journalTable" Type="Self.journalTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="journalTypesTable">
+        <PropertyRef Name="journalTypeID" />
+      </Principal>
+      <Dependent Role="journalTable">
+        <PropertyRef Name="journalTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__journalTa__journ__74794A92">
+    <End Role="transactionStatusTable" Type="Self.transactionStatusTable" Multiplicity="0..1" />
+    <End Role="journalTable" Type="Self.journalTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transactionStatusTable">
+        <PropertyRef Name="transStatusID" />
+      </Principal>
+      <Dependent Role="journalTable">
+        <PropertyRef Name="journalStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__journalTa__prepa__3E1D39E1">
+    <End Role="userTable" Type="Self.userTable" Multiplicity="1" />
+    <End Role="journalTable" Type="Self.journalTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userTable">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="journalTable">
+        <PropertyRef Name="preparorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ledgerTab__acctN__4D5F7D71">
+    <End Role="accountsTable" Type="Self.accountsTable" Multiplicity="1" />
+    <End Role="ledgerTable" Type="Self.ledgerTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountsTable">
+        <PropertyRef Name="acctNo" />
+      </Principal>
+      <Dependent Role="ledgerTable">
+        <PropertyRef Name="acctNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ledgerTab__journ__4C6B5938">
+    <End Role="journalTable" Type="Self.journalTable" Multiplicity="1" />
+    <End Role="ledgerTable" Type="Self.ledgerTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="journalTable">
+        <PropertyRef Name="journalID" />
+      </Principal>
+      <Dependent Role="ledgerTable">
+        <PropertyRef Name="journalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__passwordT__userI__29221CFB">
+    <End Role="userTable" Type="Self.userTable" Multiplicity="1" />
+    <End Role="passwordTable" Type="Self.passwordTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userTable">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="passwordTable">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__requestTa__reque__7849DB76">
+    <End Role="accountsTable" Type="Self.accountsTable" Multiplicity="0..1" />
+    <End Role="requestTable" Type="Self.requestTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountsTable">
+        <PropertyRef Name="acctNo" />
+      </Principal>
+      <Dependent Role="requestTable">
+        <PropertyRef Name="requestAcct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transacti__acctN__489AC854">
+    <End Role="accountsTable" Type="Self.accountsTable" Multiplicity="1" />
+    <End Role="transactionEntryTable" Type="Self.transactionEntryTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountsTable">
+        <PropertyRef Name="acctNo" />
+      </Principal>
+      <Dependent Role="transactionEntryTable">
+        <PropertyRef Name="acctNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transacti__journ__47A6A41B">
+    <End Role="journalTable" Type="Self.journalTable" Multiplicity="1" />
+    <End Role="transactionEntryTable" Type="Self.transactionEntryTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="journalTable">
+        <PropertyRef Name="journalID" />
+      </Principal>
+      <Dependent Role="transactionEntryTable">
+        <PropertyRef Name="journalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transacti__trans__46B27FE2">
+    <End Role="transactionTypeTable" Type="Self.transactionTypeTable" Multiplicity="1" />
+    <End Role="transactionEntryTable" Type="Self.transactionEntryTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transactionTypeTable">
+        <PropertyRef Name="transactionTypeID" />
+      </Principal>
+      <Dependent Role="transactionEntryTable">
+        <PropertyRef Name="transactionType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__userTable__userR__236943A5">
+    <End Role="userRoleTable" Type="Self.userRoleTable" Multiplicity="1" />
+    <End Role="userTable" Type="Self.userTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userRoleTable">
+        <PropertyRef Name="userRoleID" />
+      </Principal>
+      <Dependent Role="userTable">
+        <PropertyRef Name="userRoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__userTable__userS__245D67DE">
+    <End Role="userStateTable" Type="Self.userStateTable" Multiplicity="1" />
+    <End Role="userTable" Type="Self.userTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userStateTable">
+        <PropertyRef Name="userStateID" />
+      </Principal>
+      <Dependent Role="userTable">
+        <PropertyRef Name="userStateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BT_EntityStoreContainer">
+    <EntitySet Name="accountAccess" EntityType="Self.accountAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="accountCategoryTable" EntityType="Self.accountCategoryTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="accountsTable" EntityType="Self.accountsTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="accountStateTable" EntityType="Self.accountStateTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="accountSubCategoryTable" EntityType="Self.accountSubCategoryTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="accountTermTable" EntityType="Self.accountTermTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="attachTable" EntityType="Self.attachTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="eventLog" EntityType="Self.eventLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="journalTable" EntityType="Self.journalTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="journalTypesTable" EntityType="Self.journalTypesTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ledgerTable" EntityType="Self.ledgerTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="passwordTable" EntityType="Self.passwordTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="requestTable" EntityType="Self.requestTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transactionEntryTable" EntityType="Self.transactionEntryTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transactionStatusTable" EntityType="Self.transactionStatusTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transactionTypeTable" EntityType="Self.transactionTypeTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userRoleTable" EntityType="Self.userRoleTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userStateTable" EntityType="Self.userStateTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userTable" EntityType="Self.userTable" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__accountsT__acctC__367C1819" Association="Self.FK__accountsT__acctC__367C1819">
+      <End Role="accountCategoryTable" EntitySet="accountCategoryTable" />
+      <End Role="accountsTable" EntitySet="accountsTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__accountsT__acctS__37703C52" Association="Self.FK__accountsT__acctS__37703C52">
+      <End Role="accountSubCategoryTable" EntitySet="accountSubCategoryTable" />
+      <End Role="accountsTable" EntitySet="accountsTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__accountsT__acctS__607251E5" Association="Self.FK__accountsT__acctS__607251E5">
+      <End Role="accountStateTable" EntitySet="accountStateTable" />
+      <End Role="accountsTable" EntitySet="accountsTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__accountsT__acctT__5CA1C101" Association="Self.FK__accountsT__acctT__5CA1C101">
+      <End Role="accountTermTable" EntitySet="accountTermTable" />
+      <End Role="accountsTable" EntitySet="accountsTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__accountSu__categ__32AB8735" Association="Self.FK__accountSu__categ__32AB8735">
+      <End Role="accountCategoryTable" EntitySet="accountCategoryTable" />
+      <End Role="accountSubCategoryTable" EntitySet="accountSubCategoryTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__attachTab__journ__42E1EEFE" Association="Self.FK__attachTab__journ__42E1EEFE">
+      <End Role="journalTable" EntitySet="journalTable" />
+      <End Role="attachTable" EntitySet="attachTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__journalTa__appro__3F115E1A" Association="Self.FK__journalTa__appro__3F115E1A">
+      <End Role="userTable" EntitySet="userTable" />
+      <End Role="journalTable" EntitySet="journalTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__journalTa__journ__662B2B3B" Association="Self.FK__journalTa__journ__662B2B3B">
+      <End Role="journalTypesTable" EntitySet="journalTypesTable" />
+      <End Role="journalTable" EntitySet="journalTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__journalTa__journ__74794A92" Association="Self.FK__journalTa__journ__74794A92">
+      <End Role="transactionStatusTable" EntitySet="transactionStatusTable" />
+      <End Role="journalTable" EntitySet="journalTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__journalTa__prepa__3E1D39E1" Association="Self.FK__journalTa__prepa__3E1D39E1">
+      <End Role="userTable" EntitySet="userTable" />
+      <End Role="journalTable" EntitySet="journalTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ledgerTab__acctN__4D5F7D71" Association="Self.FK__ledgerTab__acctN__4D5F7D71">
+      <End Role="accountsTable" EntitySet="accountsTable" />
+      <End Role="ledgerTable" EntitySet="ledgerTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ledgerTab__journ__4C6B5938" Association="Self.FK__ledgerTab__journ__4C6B5938">
+      <End Role="journalTable" EntitySet="journalTable" />
+      <End Role="ledgerTable" EntitySet="ledgerTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__passwordT__userI__29221CFB" Association="Self.FK__passwordT__userI__29221CFB">
+      <End Role="userTable" EntitySet="userTable" />
+      <End Role="passwordTable" EntitySet="passwordTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__requestTa__reque__7849DB76" Association="Self.FK__requestTa__reque__7849DB76">
+      <End Role="accountsTable" EntitySet="accountsTable" />
+      <End Role="requestTable" EntitySet="requestTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transacti__acctN__489AC854" Association="Self.FK__transacti__acctN__489AC854">
+      <End Role="accountsTable" EntitySet="accountsTable" />
+      <End Role="transactionEntryTable" EntitySet="transactionEntryTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transacti__journ__47A6A41B" Association="Self.FK__transacti__journ__47A6A41B">
+      <End Role="journalTable" EntitySet="journalTable" />
+      <End Role="transactionEntryTable" EntitySet="transactionEntryTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transacti__trans__46B27FE2" Association="Self.FK__transacti__trans__46B27FE2">
+      <End Role="transactionTypeTable" EntitySet="transactionTypeTable" />
+      <End Role="transactionEntryTable" EntitySet="transactionEntryTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__userTable__userR__236943A5" Association="Self.FK__userTable__userR__236943A5">
+      <End Role="userRoleTable" EntitySet="userRoleTable" />
+      <End Role="userTable" EntitySet="userTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__userTable__userS__245D67DE" Association="Self.FK__userTable__userS__245D67DE">
+      <End Role="userStateTable" EntitySet="userStateTable" />
+      <End Role="userTable" EntitySet="userTable" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

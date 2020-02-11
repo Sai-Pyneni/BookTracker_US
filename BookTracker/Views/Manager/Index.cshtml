@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Manager.cshtml";
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Content/DataTables/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/DataTables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <!--Add Text Box Script-->
+
+
+
+</head>
+<body>
+    <h1 style="color: gray">Dashboard</h1>
+    <div class="row" style="margin: auto">
+
+        <div class="col-4 embed-responsive" style="padding: 5px">
+            <header style="flex-shrink: inherit">
+                <h2>
+                    Current Ratio
+                </h2>
+            </header>
+            <hr />
+            <div class="jumbotron " title="Current Ratio" style="background-color: Background" id="crBox">
+
+                <input class="input embed-responsive" type="text" contenteditable="false"
+                       style="margin:auto; text-align: left; font-size: 35px; background-color: inherit;
+                    font-weight: bolder" id="currentRatioText" readonly />
+
+
+
+            </div>
+
+        </div>
+        <div class="col-4 embed-responsive" style="padding: 5px">
+            <header style="flex-shrink: inherit">
+                <h2>
+                    Return On Assets
+                </h2>
+            </header>
+            <hr />
+            <div class="jumbotron" title="Return On Assests" style="background-color: Background" id="roaBox">
+
+                <input class="input embed-responsive" type="text" contenteditable="false"
+                       style="margin:auto; text-align: left; font-size: 35px; background-color: inherit;
+                    font-weight: bolder" id="roaText" readonly />
+
+            </div>
+
+        </div>
+        <div class="col-4 embed-responsive" style="padding: 5px">
+            <header style="flex-shrink: inherit">
+                <h2>
+                    Return on Equity
+                </h2>
+            </header>
+            <hr />
+            <div class="jumbotron" title="Return on Equity" style="background-color: Background" id="roeBox">
+
+                <input class="input embed-responsive" type="text" contenteditable="false"
+                       style="margin:auto; text-align: left; font-size: 35px; background-color: inherit;
+                    font-weight: bolder" id="roeText" readonly />
+            </div>
+
+        </div>
+        <div class="col-4 embed-responsive" style="padding: 5px">
+            <header style="flex-shrink: inherit">
+                <h2>
+                    Net Profit Margin
+                </h2>
+            </header>
+            <hr />
+            <div class="jumbotron" title="Net Profit Margin" style="background-color: Background" id="npmBox">
+
+                <input class="input embed-responsive" type="text" contenteditable="false"
+                       style="margin:auto; text-align: left; font-size: 35px; background-color: inherit;
+                    font-weight: bolder" id="npmText" readonly />
+            </div>
+
+
+        </div>
+        <div class="col-4 embed-responsive" style="padding: 5px">
+            <header style="flex-shrink: inherit">
+                <h2>
+                    Fixed Asset Turnover
+                </h2>
+            </header>
+            <hr />
+            <div class="jumbotron" title="Fixed Asset Turnover" style="background-color: Background" id="fatBox">
+
+                <input class="input embed-responsive" type="text" contenteditable="false"
+                       style="margin:auto; text-align: left; font-size: 35px; background-color: inherit;
+                    font-weight: bolder" id="fatText" readonly />
+            </div>
+
+        </div>
+        <div class="col-4 embed-responsive" style="padding: 5px">
+            <header style="flex-shrink: inherit">
+                <h2>
+                    Total Asset Turnover
+                </h2>
+            </header>
+            <hr />
+            <div class="jumbotron" title="Total Asset Turnover" style="background-color: Background" id="tatBox">
+
+                <input class="input embed-responsive" type="text" contenteditable="false"
+                       style="margin:auto; text-align: left; font-size: 35px; background-color: inherit;
+                    font-weight: bolder" id="tatText" readonly />
+            </div>
+
+        </div>
+        <div class="col-4 embed-responsive" style="padding: 5px">
+            <header style="flex-shrink: inherit">
+                <h2>
+                    Quick Ratio
+                </h2>
+            </header>
+            <hr />
+            <div class="jumbotron" title="Quick Ratio" style="background-color: Background" id="quBox">
+
+
+                <input class="input embed-responsive" type="text" contenteditable="false"
+                       style="margin:auto; text-align: left; font-size: 35px; background-color: inherit;
+                    font-weight: bolder" id="qcRatioText" readonly />
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+<style>
+    .jumbotron.greenback {
+        height: 150px;
+        background: darkgrey;
+        text-align: start;
+        background-color: #806a6a;
+    }
+
+    .dot {
+        height: 25px;
+        width: 25px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .input {
+        float: inherit;
+        border: 0
+    }
+</style>
+<script src="~/OurScripts/common.RatioAnalysis.js"></script>
+

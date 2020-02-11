@@ -1,0 +1,286 @@
+﻿@model  BookTracker.ViewModels.UserModel
+
+@{
+  
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+}
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js">s</script>
+<script src="~/Content/DataTables/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/DataTables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+
+
+
+<html>
+<head class="container-fluid">
+    <meta name="viewport" content="width=device-width" />
+    <title>Users</title>
+
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+         
+
+
+</head>
+<body class="body">
+
+    <div style="margin:0 auto" class="table table-striped table-responsive table-bordered">
+        <a href="#" class="btn btn-lg btn-success" onclick="AddUsers()" style="padding-bottom:10px">Add A User</a>
+        <div class="row" style="padding-left: 15px">
+          
+            <div style="padding: 15px">
+                User Status:
+                <select id="table-filter" class="form-control dropdown">
+                    <option value="">All</option>
+                    <option>Active</option>
+                    <option>Inactive</option>
+                    
+                </select>
+
+
+            </div>
+            <div style="padding: 15px">
+                User Type:
+                <select id="table-filter1" class="form-control dropdown">
+                    <option value="">All</option>
+                    <option>Administrator</option>
+                    <option>Manager</option>
+                    <option>Accountant</option>
+                    <option>n/a</option>
+                </select>
+            </div>
+        </div>
+        <table id="accountsTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>User ID</th>
+                    <th>User Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Created By</th>
+                    <th>Date Created</th>
+                    <th>User Role</th>
+                    <th>User State</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+
+                    <th>User ID</th>
+                    <th>User Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Created By</th>
+                    <th>Date Created</th>
+                    <th>User Role</th>
+                    <th>User State</th>
+                    <th></th>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <div id="ConfirmDeactivate" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class='modal-header'>
+                    <h4 id="modalTitle"></h4>
+                    <a href="#" class="close" data-dismiss="modal" style="color:red">&times;</a>
+                </div>
+                <div class="modal-body">
+
+                    <h4>
+                        Are You Sure You Want To Deactivate This User?
+                        @Html.HiddenFor(a => a.userID)
+                    </h4>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-block btn-danger" onclick="DeactivateUser()">Deactivate</a>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="ConfirmActivate" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class='modal-header'>
+                    <h4 id="modalTitle1"></h4>
+                    <a href="#" class="close" data-dismiss="modal" style="color:red">&times;</a>
+                </div>
+                <div class="modal-body">
+
+                    <h4>
+                        Are You Sure You Want To Activate This User?
+                        @Html.HiddenFor(a => a.userID)
+                    </h4>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-block btn-success" onclick="ActivateUser()">Activate</a>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var otable = $('#accountsTable').DataTable({
+            "dom": ' <"search"f><"top"l>rt<"bottom"ip><"clear">',
+            "processing": true,
+            // "serverSide": true,
+            "ajax": {
+                "url": '/Admin/LoadData',
+                "type": "POST",
+                "datatype": "json",
+                "data": "data"
+            },
+            "columns": [
+
+
+                //index 0
+                { "data": "userID", "name": "userID", "autoWidth": true },//index 1
+                { "data": "userName", "name": "userName", "autoWidth": true },//index 1
+                { "data": "userFName", "name": "userFName", "autoWidth": true },//index 2
+                { "data": "userLName", "name": "userLName", "autoWidth": true },//index 3
+                { "data": "userEMail", "name": "userEMail", "autoWidth": true },
+                { "data": "userPhone", "name": "userPhone", "autoWidth": true },//index 4
+                { "data": "createdBy", "name": "createdBy", "autoWidth": true },//index 5
+                {
+                    "data": "dateCreated",
+                    "render": function (d) {
+                        return moment(d).format("MM/DD/YYYY");
+                    },
+                    "name": "dateCreated", "autoWidth": true
+                },//index 6
+                { "data": "userRole", "name": "acctStateID", "autoWidth": true },//index 7
+                { "data": "userState", "name": "comments", "autoWidth": true },               
+                {
+                    "data": "userID", 
+                    "render": function (data) {
+                       return "<a href='#' class='btn btn-block  btn-warning' onclick='editAccount(" + data + ")'></i>Edit</a><a href = '#' class='btn btn-block btn-danger' style='padding-left=5px' onclick = 'deleteAccounts(" + data + ")' ></i> Deactivate</a>";
+                        ;
+                    },
+                    "name": "userID",
+                    "orderable": false,
+                    "bSortable": false              
+                },
+                
+                       
+            ],
+            rowCallback: function (row, data) {
+                if (data.userState == "Active") {
+                    $('td:nth-child(11)', row).html("<a href='#' class='btn btn-block btn-warning' onclick='editAccount(" + data.userID + ")'></i>Edit</a><a href='#' class='btn btn-block btn-danger' style='padding-bottom: 5px'  onclick='deleteAccounts(" + data.userID + ")'>Deactivate</a>");
+
+                }
+                else if (data.userState == "Inactive") {
+                    $('td:nth-child(11)', row).html("<a href='#' class='btn btn-block btn-warning' onclick='editAccount(" + data.userID + ")'></i>Edit</a><a href='#' class='btn btn-block  btn-success' style='padding-bottom: 5px'  onclick='activeAccounts(" + data.userID + ")'>Activate</a>");
+
+                }
+                   
+            }
+
+
+        });
+       
+        function sqlToJsDate(sqlDate) {
+            //sqlDate in SQL DATETIME format ("yyyy-mm-dd hh:mm:ss.ms")
+            var sqlDateArr1 = sqlDate.split("-");
+            //format of sqlDateArr1[] = ['yyyy','mm','dd hh:mm:ms']
+            var sYear = sqlDateArr1[0];
+            var sMonth = (Number(sqlDateArr1[1]) - 1).toString();
+            var sqlDateArr2 = sqlDateArr1[2].split(" ");
+            //format of sqlDateArr2[] = ['dd', 'hh:mm:ss.ms']
+            var sDay = sqlDateArr2[0];
+            var sqlDateArr3 = sqlDateArr2[1].split(":");
+            //format of sqlDateArr3[] = ['hh','mm','ss.ms']
+            var sHour = sqlDateArr3[0];
+            var sMinute = sqlDateArr3[1];
+            var sqlDateArr4 = sqlDateArr3[2].split(".");
+            //format of sqlDateArr4[] = ['ss','ms']
+            var sSecond = sqlDateArr4[0];
+            var sMillisecond = sqlDateArr4[1];
+
+            return new Date(sYear, sMonth, sDay, sHour, sMinute, sSecond, sMillisecond);
+        }
+
+        $('#table-filter').on('change', function () {
+            otable.search(this.value).draw();
+        });
+        $('#table-filter1').on('change', function () {
+            otable.search(this.value).draw();
+        });
+
+
+    });
+    function deleteAccounts(userID) {
+        $("#userID").val(userID);
+        $("#modalTitle").html("Deactivate User: " + userID);
+        $("#ConfirmDeactivate").modal('show');
+    }
+    function activeAccounts(userID) {
+        $("#userID").val(userID);
+        $("#modalTitle1").html("Activate User: " + userID);
+        $("#ConfirmActivate").modal('show');
+    }
+    function DeactivateUser() {
+        var userID = $("#userID").val();
+        $.ajax({
+
+            type: "POST",
+            url: "/Admin/DeactivateByUserID?userID=" + userID,
+            success: function (result) {
+                //$("#accountsTable").api().ajax.reload();
+                alert("User Successfully Deactivated!");
+                window.location.href = "/Admin/Index";
+                $("#ConfirmDeactivate").modal('hide');
+            }
+        });
+    }
+    function ActivateUser() {
+        var userID = $("#userID").val();
+        $.ajax({
+
+            type: "POST",
+            url: "/Admin/DeactivateByUserID?userID=" + userID,
+            success: function (result) {
+                //$("#accountsTable").api().ajax.reload();
+                alert("User Successfully Activated!");
+                window.location.href = "/Admin/Index";
+                $("#ConfirmDeactivate").modal('hide');
+            }
+        });
+    }
+    function AddUsers() {
+          window.location.href = "@Url.Action("Registration", "userTable")"
+    }
+    function editAccount(data) {
+        window.location.href = "@Url.Action("Edit", "Admin")" + "/" + data;
+    }
+</script>

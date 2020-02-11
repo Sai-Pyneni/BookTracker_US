@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5efb03936aab4a839e4654bbbc6978b7" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="BT_Admin.accountAccess" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.accountCategoryTable" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.accountsTable" Width="1.5" PointX="5.25" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.accountStateTable" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.accountSubCategoryTable" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.accountTermTable" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.attachTable" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.eventLog" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.journalTable" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.journalTypesTable" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.ledgerTable" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.passwordTable" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.sysdiagram" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.transactionEntryTable" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.transactionStatusTable" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.transactionTypeTable" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.userRoleTable" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.userStateTable" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BT_Admin.userTable" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="BT_Admin.FK__accountsT__acctC__367C1819" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__accountSu__categ__32AB8735" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__accountsT__acctS__37703C52" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__accountsT__acctS__607251E5" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__accountsT__acctT__5CA1C101" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__ledgerTab__acctN__4D5F7D71" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__transacti__acctN__489AC854" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__attachTab__journ__42E1EEFE" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__journalTa__appro__3F115E1A" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__journalTa__journ__662B2B3B" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__journalTa__prepa__3E1D39E1" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__ledgerTab__journ__4C6B5938" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__transacti__journ__47A6A41B" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__passwordT__userI__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__transacti__trans__46B27FE2" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__transacti__trans__634EBE90" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__userTable__userR__236943A5" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__userTable__userS__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector Association="BT_Admin.FK__journalTa__journ__74794A92" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

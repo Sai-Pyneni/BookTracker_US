@@ -1,0 +1,96 @@
+﻿
+    @{
+        //Author: Sai Pyneni
+        //date: 1/27/2019
+        Layout = null;
+        if(Session["userID"] == null)
+        {
+            Response.Redirect("~/userTable/Login");
+        }
+    }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Book Tracker</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/BookTracker_logo.ico" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+
+<body  style="background-color: whitesmoke">
+
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top " style="background-color: #666; background: #666">
+        <a class="navbar-brand">
+            <img class="" style="max-height: 70px; max-width: 70px;" src="~/Images/BookTracker_logo.gif" title="BookTracker-logo" />
+        </a>
+      
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font:bold">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    @Html.ActionLink("Admin Dashboard", "Dashboard", "Admin", new { }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item active">
+                    @Html.ActionLink("User Management", "Index", "Admin", new { }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item active">
+                    @Html.ActionLink("Chart Of Accounts", "Index", "ChartOfAccounts", new { }, new { @class = "nav-link" })
+                </li>
+
+                <li class="nav-item active">
+                    @Html.ActionLink("Event Log", "Index", "Eventlog", new { }, new { @class = "nav-link" })
+                </li>
+
+            </ul>
+            <div class="nav-item dropdown active bs-popover-right">
+                <a class="nav-link dropdown-toggle font-weight-bold" style="color: white; font: bold" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+
+                    @Html.ActionLink("Reset Password", "ForgotPassword", "userTable", new { }, new { @class = "nav-link", @style = " color: white" })
+                    <div class="dropdown-divider"></div>
+                    @Html.ActionLink("Log Out", "LogOut", "userTable", new { }, new { @class = "nav-link ", @style = " color: white" })
+                </div>
+            </div>
+
+            <h3 style="font-family:OCR A Std; color:white" class="font-weight-bold font-italic"> Hello, @Session["userFName"].ToString()</h3>
+
+            <!--<form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+            </form> -->
+        </div>
+
+    </nav>
+
+    <div style="padding: 10px">
+
+    </div>
+    <div class="container-fluid">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Book Tracker Application
+            
+            </p>
+        </footer>
+    </div>
+
+    @RenderSection("Scripts", false)
+
+</body>
+</html>
+ 
+    @Scripts.Render("~/bundles/bootstrap")
+  

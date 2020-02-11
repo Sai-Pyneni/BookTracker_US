@@ -1,0 +1,114 @@
+﻿@model BookTracker.Models.UserLogin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<body>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="jumbotron-fluid jumbo1" >
+
+          
+
+            <div style="align-content: center; align-items: center">
+                <h2 class="title" font face="georgia" style="color:white; font-family: 'Times New Roman' ; font-size: 300%"> Book Tracker </h2>
+                <img src="~/Images/BookTracker_logo.gif" style="max-height: 100px; max-width: 100px;" title="BookTracker-logo" />
+
+                <h4 font face="georgia" style="color:white; margin-top:20px; font-family: 'Times New Roman' ; font-size: 200%; font-weight:400">User Login Page</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+
+
+                    @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-4", @style = "color:white; font-weight: bold; font-family: 'Times New Roman' ;" })
+                    <div class="0">
+                        @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control label", @id = "username-input", @style = "-webkit-inline-box" } })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.userPassword, htmlAttributes: new { @class = "control-label col-md-4", @style = "color:white; font-weight: bold; font-family: 'Times New Roman' ;" })
+
+                    <div class="">
+                        @Html.EditorFor(model => model.userPassword, new { htmlAttributes = new { @class = "form-control label" } })
+
+                    </div>
+                </div>
+                <div class="field-validation-error">
+                    @Html.DisplayFor(Model => Model.LoginError, new { @class = "control-label col-md-4", @style = "color:white; font-weight: bold" })
+                    @Html.DisplayFor(Model => Model.LogOnError, new { @class = "control-label col-md-4", @style = "color:white; font-weight: bold" })
+                </div>
+                <div class="buttons">
+                    <div class="form-group" id="login-button">
+                        <div class="" id="login">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </div>
+
+                    <div>
+                        @Html.ActionLink("Request Access", "Registration", "userTable", new { }, new { @class = "float-none btn btn-warning" })
+                    </div>
+                    <div style="padding: 5px">
+                        @Html.ActionLink("Forgot Password", "ForgotPassword", "userTable", new { }, new { @class = "float-none btn btn-danger " })
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    }
+       
+
+    </body>
+
+
+<style>
+    .label {
+        display: inline-flex;
+        text-align: center;
+    }
+
+    .row {
+        display: flex;
+        margin-left: 40%;
+    }
+
+    #password-col {
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .password-col {
+        display: flex;
+        justify-content: center;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #login-button {
+        display: flex;
+        justify-content: inherit;
+        margin-top: 5px;
+    }
+
+    #login {
+        margin-top: auto;
+    }
+</style>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

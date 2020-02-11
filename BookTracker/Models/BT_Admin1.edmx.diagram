@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5268d92fe8574ae98585838d40df00bb" Name="Diagram1">
+        <EntityTypeShape EntityType="BT_Entity.accountAccess" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BT_Entity.accountCategoryTable" Width="1.5" PointX="6" PointY="19.375" />
+        <EntityTypeShape EntityType="BT_Entity.accountsTable" Width="1.5" PointX="8.25" PointY="19" />
+        <EntityTypeShape EntityType="BT_Entity.accountStateTable" Width="1.5" PointX="6" PointY="17" />
+        <EntityTypeShape EntityType="BT_Entity.accountSubCategoryTable" Width="1.5" PointX="6" PointY="24.25" />
+        <EntityTypeShape EntityType="BT_Entity.accountTermTable" Width="1.5" PointX="6" PointY="21.875" />
+        <EntityTypeShape EntityType="BT_Entity.attachTable" Width="1.5" PointX="7.5" PointY="13.375" />
+        <EntityTypeShape EntityType="BT_Entity.eventLog" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BT_Entity.journalTable" Width="1.5" PointX="5.25" PointY="5.5" />
+        <EntityTypeShape EntityType="BT_Entity.journalTypesTable" Width="1.5" PointX="3" PointY="11" />
+        <EntityTypeShape EntityType="BT_Entity.ledgerTable" Width="1.5" PointX="10.5" PointY="6.25" />
+        <EntityTypeShape EntityType="BT_Entity.passwordTable" Width="1.5" PointX="5.25" PointY="11" />
+        <EntityTypeShape EntityType="BT_Entity.requestTable" Width="1.5" PointX="10.5" PointY="20.375" />
+        <EntityTypeShape EntityType="BT_Entity.sysdiagram" Width="1.5" PointX="7.75" PointY="9.75" />
+        <EntityTypeShape EntityType="BT_Entity.transactionEntryTable" Width="1.5" PointX="7.5" PointY="6.25" />
+        <EntityTypeShape EntityType="BT_Entity.transactionStatusTable" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="BT_Entity.transactionTypeTable" Width="1.5" PointX="5.25" PointY="2.75" />
+        <EntityTypeShape EntityType="BT_Entity.userRoleTable" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BT_Entity.userStateTable" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BT_Entity.userTable" Width="1.5" PointX="3" PointY="5.25" />
+        <AssociationConnector Association="BT_Entity.FK__accountsT__acctC__367C1819" />
+        <AssociationConnector Association="BT_Entity.FK__accountSu__categ__32AB8735" />
+        <AssociationConnector Association="BT_Entity.FK__accountsT__acctS__37703C52" />
+        <AssociationConnector Association="BT_Entity.FK__accountsT__acctS__607251E5" />
+        <AssociationConnector Association="BT_Entity.FK__accountsT__acctT__5CA1C101" />
+        <AssociationConnector Association="BT_Entity.FK__ledgerTab__acctN__4D5F7D71" />
+        <AssociationConnector Association="BT_Entity.FK__requestTa__reque__7849DB76" />
+        <AssociationConnector Association="BT_Entity.FK__transacti__acctN__489AC854" />
+        <AssociationConnector Association="BT_Entity.FK__attachTab__journ__42E1EEFE" />
+        <AssociationConnector Association="BT_Entity.FK__journalTa__appro__3F115E1A" />
+        <AssociationConnector Association="BT_Entity.FK__journalTa__journ__662B2B3B" />
+        <AssociationConnector Association="BT_Entity.FK__journalTa__journ__74794A92" />
+        <AssociationConnector Association="BT_Entity.FK__journalTa__prepa__3E1D39E1" />
+        <AssociationConnector Association="BT_Entity.FK__ledgerTab__journ__4C6B5938" />
+        <AssociationConnector Association="BT_Entity.FK__transacti__journ__47A6A41B" />
+        <AssociationConnector Association="BT_Entity.FK__passwordT__userI__29221CFB" />
+        <AssociationConnector Association="BT_Entity.FK__transacti__trans__46B27FE2" />
+        <AssociationConnector Association="BT_Entity.FK__userTable__userR__236943A5" />
+        <AssociationConnector Association="BT_Entity.FK__userTable__userS__245D67DE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

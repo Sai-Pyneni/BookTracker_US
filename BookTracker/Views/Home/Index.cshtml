@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+
+<div class="jumbotron jumbotron1 text-center">
+    <img src="~/Images/BookTracker_logo.png" class="rounded-circle" style="max-height: 100px; max-width: 100px;" title="BookTracker-logo"/> 
+    <h1 style="color: whitesmoke"> Book Tracker </h1>
+</div>
+<div>
+    <section class="jumbotron jumbo1 container-fluid " >
+        
+          <p>You successfully logged in.</p>   
+    </section>
+</div>
+<style>
+    .jumbotron1{
+
+        background-color: darkslategrey;
+        font-family: 'Comic Sans MS';
+        font-weight: 900;
+    }
+    .jumbo1{
+        background-color: lightgray ;
+        font: 900;
+    }
+    
+</style>

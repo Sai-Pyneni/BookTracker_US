@@ -1,0 +1,150 @@
+﻿@model BookTracker.Models.accountsTable
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+    <div class="form-horizontal">
+        <h4>Edit Account</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+           Account Number:
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.acctNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.acctNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           Account Name:
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.acctName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.acctName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        <div class="form-group">
+            @Html.HiddenFor(m=>m.dateCreated)
+        </div>
+
+        <div class="form-group">
+            Account Category:
+            @Html.DropDownListFor(m => m.acctCat,
+           new List<SelectListItem>()
+                     {
+                        new SelectListItem() { Text = "Asset", Value = "1"},
+                        new SelectListItem() { Text = "Liability", Value = "2" },
+                         new SelectListItem() { Text = "Owner's Equity", Value = "3" },
+                           new SelectListItem() { Text = "Revenues", Value = "4"},
+                        new SelectListItem() { Text = "Operating Expenses", Value = "5" },
+                         new SelectListItem() { Text = "None", Value = "6" },
+
+
+
+                     },
+                     new { htmlAttributes = new { @class = "dropdown-toggle" , @placeholder = "Select Category"} }
+                   )
+            @Html.ValidationMessageFor(m => m.acctCat)
+        </div>
+        <div class="form-group">
+            Account Sub-Category:
+            @Html.DropDownListFor(m => m.acctSubCat,
+            new List<SelectListItem>()
+                      {
+                         new SelectListItem() { Text = "Cash", Value = "10"},
+                         new SelectListItem() { Text = "Receivables", Value = "12" },
+                          new SelectListItem() { Text = "Inventories", Value = "13" },
+                            new SelectListItem() { Text = "Prepaid Items", Value = "14"},
+                         new SelectListItem() { Text = "Long-Term Investments", Value = "15" },
+                          new SelectListItem() { Text = "Land", Value = "16"},
+                         new SelectListItem() { Text = "Buildings", Value = "17" },
+                          new SelectListItem() { Text = "Equipment", Value = "18" },
+                            new SelectListItem() { Text = "Intangibles", Value = "19"},
+                         new SelectListItem() { Text = "Short Term Payables", Value = "20" },
+                         new SelectListItem() { Text = "Employee Pay Related Issues", Value = "21"},
+                          new SelectListItem() { Text = "Employer Pay Related Issues", Value = "22" },
+                          new SelectListItem() { Text = "Sales Tax", Value = "23" },
+                            new SelectListItem() { Text = "Deferred Revenues", Value = "24"},
+                         new SelectListItem() { Text = "Long Term Liabilites", Value = "25" },
+                          new SelectListItem() { Text = "Operating Revenues", Value = "40"},
+                         new SelectListItem() { Text = "Other Revenues", Value = "41" },
+                           new SelectListItem() { Text = "Cost of Goods Sold", Value = "50"},
+                         new SelectListItem() { Text = "Selling Expenses", Value = "51" },
+                          new SelectListItem() { Text = "General Admin Expenses", Value = "12" },
+                          new SelectListItem() { Text = "General Admin Expenses", Value = "53" },
+                            new SelectListItem() { Text = "General Admin Expenses", Value = "54"},
+                         new SelectListItem() { Text = "Other Expenses", Value = "55" },
+                          new SelectListItem() { Text = "None", Value = "56" },
+
+
+
+                      },
+                      new { htmlAttributes = new { @class = "dropdown-toggle" , @placeholder = "Select Sub Category"} }
+                    )
+        </div>
+        <div class="form-group">
+            Account Term:
+            @Html.DropDownListFor(m => m.acctTerm,
+            new List<SelectListItem>()
+                     {
+                        new SelectListItem() { Text = "Current", Value = "1"},
+                        new SelectListItem() { Text = "Long-Term", Value = "2" },
+                         new SelectListItem() { Text = "None", Value = "3" },
+
+
+                     },
+
+                     new { htmlAttributes = new { @class = "dropdown-toggle", @placeholder = "Select Category" } }
+            )
+            @Html.ValidationMessageFor(m => m.acctTerm, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            Account State:
+            @Html.DropDownListFor(m => m.acctStateID, new List<SelectListItem>()
+                     {
+                        new SelectListItem() { Text = "Inactive", Value = "0"},
+                        new SelectListItem() { Text = "Active", Value = "1" }
+                         
+
+                     },
+
+                     new { htmlAttributes = new { @class = "dropdown-toggle", @placeholder = "Select Category" } }
+            )
+            @Html.ValidationMessageFor(m => m.acctStateID, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.comments, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.comments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.comments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index",new{ @class = "btn btn-primary"})
+    </div>
+</body>
+</html>

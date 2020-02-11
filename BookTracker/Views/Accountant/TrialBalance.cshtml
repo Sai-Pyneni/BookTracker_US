@@ -1,0 +1,225 @@
+﻿
+@{
+    ViewBag.title = "BookTracker Accountants";
+    ViewBag.statement = "Trial Balance";
+    ViewBag.date = DateTime.Now.ToString("MMMM dd, yyyy");
+    Layout = "~/Views/Shared/_Accountant.cshtml";
+}
+
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Content/DataTables/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/DataTables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <!--Add Text Box Script-->
+
+
+
+</head>
+<body>
+    <button id="printButton" onclick="print()">Save</button>
+    <div style="width: 50%; margin:0 auto" class="embed-responsive-item">
+        <div style="text-align: center; font-size: 20px; padding: 0; ">
+            <p style="line-height:100%">
+                @ViewBag.title <br />
+                @ViewBag.statement <br />
+                As of @ViewBag.date
+            </p>
+
+            <hr style="font-weight: bold" />
+        </div>
+                
+        <table class="table-condensed" style="margin:auto; width: 100%"  id="trailTable">
+
+            <thead class="">
+
+                <tr>
+                    <th width="0px"></th>
+                    <th width="auto">Account</th>
+                    <th width="auto" style="text-align: center">Debit</th>
+                    <th width="auto" style="text-align: right"> Credit</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr></tr>
+
+            </tbody>
+            <tfoot style="padding: 0px">
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th style="border-bottom:double; border-bottom-width:10px">
+                    </th>
+                    <th style="border-bottom:double; border-bottom-width:10px">
+
+                    </th>
+
+                </tr>
+
+            </tfoot>
+
+        </table>
+    </div>
+    <div class="modal fade" id="ledger">
+        <div class="modal-dialog embed-responsive" style=" width: 100% !important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 style="padding-right: 5px" id="acctTitle"> </h4>
+                    <a href="#" class="close text-danger" data-dismiss="modal">&times;</a>
+                </div>
+                <div class="modal-body">
+
+                    <table id="ledgerTable">
+
+                        <thead class="">
+
+                            <tr>
+                                <th>Date </th>
+                                <th>Post Reference No.</th>
+                                <th>Debits</th>
+                                <th> Credits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr></tr>
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="journalDetails">
+        <div class="modal-dialog embed-responsive" style=" width: 100% !important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 style="padding-right: 5px" id="jouralTitle">Transactions</h4>
+                    <a href="#" class="close text-danger" data-dismiss="modal">&times;</a>
+                </div>
+
+                <div class="modal-body">
+                    <table id="journalDetailsTable" class="transTable1" style=" width: 100% !important;">
+
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Prepared By</th>
+                                <th>Approved By</th>
+
+                            </tr>
+                        </thead>
+
+                    </table>
+                    <table id="transDebTable" class="transTable1" style=" width: 100% !important;">
+
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Account</th>
+                                <th>Transaction Type</th>
+                                <th>Amount</th>
+
+                            </tr>
+                        </thead>
+
+                    </table>
+                    <table id="transCredTable" class="transTable" style=" width: 100% !important;">
+                        <tr>
+                            <th>Account</th>
+                            <th>Transaction Type</th>
+                            <th>Amount</th>
+                        </tr>
+
+
+                    </table>
+                    <table id="filesTable" class="attachTable" style=" width: 100% !important;">
+                        <tr>
+                            <th>File Name</th>
+                            <th>Download</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="~/OurScripts/common.TrialBalance.js"></script>
+<script src="~/OurScripts/common.COA.js"></script>
+<script src="~/OurScripts/common.Ledger.js"></script>
+<style>
+
+
+    .hdh {
+        text-decoration-line: underline;
+        text-decoration-style: double;
+    }
+
+    table {
+        border-style: none;
+        background: none;
+        border-bottom: 0px !important;
+        background-color: none !important;
+        border: 0px !important;
+    }
+
+        table tr {
+            background-color: whitesmoke !important;
+        }
+
+        table tbody {
+            border-style: none;
+        }
+
+    hr {
+        height: 2px;
+        /* Set the hr color */
+        color: #333; /* old IE */
+        background-color: #333; /* Modern Browsers */
+    }
+</style>

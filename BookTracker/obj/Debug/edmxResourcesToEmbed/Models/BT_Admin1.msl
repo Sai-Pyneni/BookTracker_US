@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BT_EntityStoreContainer" CdmEntityContainer="BT_Entity1">
+    <EntitySetMapping Name="accountAccesses">
+      <EntityTypeMapping TypeName="BT_Entity.accountAccess">
+        <MappingFragment StoreEntitySet="accountAccess">
+          <ScalarProperty Name="acctAccountant" ColumnName="acctAccountant" />
+          <ScalarProperty Name="acctManagers" ColumnName="acctManagers" />
+          <ScalarProperty Name="acctNo" ColumnName="acctNo" />
+          <ScalarProperty Name="accessID" ColumnName="accessID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accountCategoryTables">
+      <EntityTypeMapping TypeName="BT_Entity.accountCategoryTable">
+        <MappingFragment StoreEntitySet="accountCategoryTable">
+          <ScalarProperty Name="catName" ColumnName="catName" />
+          <ScalarProperty Name="acctCatID" ColumnName="acctCatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accountsTables">
+      <EntityTypeMapping TypeName="BT_Entity.accountsTable">
+        <MappingFragment StoreEntitySet="accountsTable">
+          <ScalarProperty Name="acctStateID" ColumnName="acctStateID" />
+          <ScalarProperty Name="dateEdited" ColumnName="dateEdited" />
+          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+          <ScalarProperty Name="editedBy" ColumnName="editedBy" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="acctTerm" ColumnName="acctTerm" />
+          <ScalarProperty Name="initialBalace" ColumnName="initialBalace" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="totalCredits" ColumnName="totalCredits" />
+          <ScalarProperty Name="totalDebits" ColumnName="totalDebits" />
+          <ScalarProperty Name="acctSubCat" ColumnName="acctSubCat" />
+          <ScalarProperty Name="acctCat" ColumnName="acctCat" />
+          <ScalarProperty Name="acctName" ColumnName="acctName" />
+          <ScalarProperty Name="acctNo" ColumnName="acctNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accountStateTables">
+      <EntityTypeMapping TypeName="BT_Entity.accountStateTable">
+        <MappingFragment StoreEntitySet="accountStateTable">
+          <ScalarProperty Name="actState" ColumnName="actState" />
+          <ScalarProperty Name="acctStateID" ColumnName="acctStateID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accountSubCategoryTables">
+      <EntityTypeMapping TypeName="BT_Entity.accountSubCategoryTable">
+        <MappingFragment StoreEntitySet="accountSubCategoryTable">
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="acctSubCatName" ColumnName="acctSubCatName" />
+          <ScalarProperty Name="acctSubCatID" ColumnName="acctSubCatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accountTermTables">
+      <EntityTypeMapping TypeName="BT_Entity.accountTermTable">
+        <MappingFragment StoreEntitySet="accountTermTable">
+          <ScalarProperty Name="termName" ColumnName="termName" />
+          <ScalarProperty Name="acctTermID" ColumnName="acctTermID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="attachTables">
+      <EntityTypeMapping TypeName="BT_Entity.attachTable">
+        <MappingFragment StoreEntitySet="attachTable">
+          <ScalarProperty Name="attachContents" ColumnName="attachContents" />
+          <ScalarProperty Name="attachLocation" ColumnName="attachLocation" />
+          <ScalarProperty Name="journalID" ColumnName="journalID" />
+          <ScalarProperty Name="attachID" ColumnName="attachID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eventLogs">
+      <EntityTypeMapping TypeName="BT_Entity.eventLog">
+        <MappingFragment StoreEntitySet="eventLog">
+          <ScalarProperty Name="eventDate" ColumnName="eventDate" />
+          <ScalarProperty Name="userID2" ColumnName="userID2" />
+          <ScalarProperty Name="ledgerID" ColumnName="ledgerID" />
+          <ScalarProperty Name="attachID" ColumnName="attachID" />
+          <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+          <ScalarProperty Name="journalID" ColumnName="journalID" />
+          <ScalarProperty Name="toPage" ColumnName="toPage" />
+          <ScalarProperty Name="fromPage" ColumnName="fromPage" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="eventTimeDate" ColumnName="eventTimeDate" />
+          <ScalarProperty Name="eventID" ColumnName="eventID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="journalTables">
+      <EntityTypeMapping TypeName="BT_Entity.journalTable">
+        <MappingFragment StoreEntitySet="journalTable">
+          <ScalarProperty Name="reason" ColumnName="reason" />
+          <ScalarProperty Name="journalStatus" ColumnName="journalStatus" />
+          <ScalarProperty Name="datePrepared" ColumnName="datePrepared" />
+          <ScalarProperty Name="journalTypeID" ColumnName="journalTypeID" />
+          <ScalarProperty Name="isAttach" ColumnName="isAttach" />
+          <ScalarProperty Name="approverID" ColumnName="approverID" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="preparorID" ColumnName="preparorID" />
+          <ScalarProperty Name="journalID" ColumnName="journalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="journalTypesTables">
+      <EntityTypeMapping TypeName="BT_Entity.journalTypesTable">
+        <MappingFragment StoreEntitySet="journalTypesTable">
+          <ScalarProperty Name="journalType" ColumnName="journalType" />
+          <ScalarProperty Name="journalTypeID" ColumnName="journalTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ledgerTables">
+      <EntityTypeMapping TypeName="BT_Entity.ledgerTable">
+        <MappingFragment StoreEntitySet="ledgerTable">
+          <ScalarProperty Name="lStatus" ColumnName="lStatus" />
+          <ScalarProperty Name="credits" ColumnName="credits" />
+          <ScalarProperty Name="debits" ColumnName="debits" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="acctNo" ColumnName="acctNo" />
+          <ScalarProperty Name="approvalDate" ColumnName="approvalDate" />
+          <ScalarProperty Name="journalID" ColumnName="journalID" />
+          <ScalarProperty Name="ledgerID" ColumnName="ledgerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="passwordTables">
+      <EntityTypeMapping TypeName="BT_Entity.passwordTable">
+        <MappingFragment StoreEntitySet="passwordTable">
+          <ScalarProperty Name="resetPasswordCode" ColumnName="resetPasswordCode" />
+          <ScalarProperty Name="password5" ColumnName="password5" />
+          <ScalarProperty Name="password4" ColumnName="password4" />
+          <ScalarProperty Name="password3" ColumnName="password3" />
+          <ScalarProperty Name="password2" ColumnName="password2" />
+          <ScalarProperty Name="currentPass" ColumnName="currentPass" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="passID" ColumnName="passID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="requestTables">
+      <EntityTypeMapping TypeName="BT_Entity.requestTable">
+        <MappingFragment StoreEntitySet="requestTable">
+          <ScalarProperty Name="requestFilledBy" ColumnName="requestFilledBy" />
+          <ScalarProperty Name="requestedBy" ColumnName="requestedBy" />
+          <ScalarProperty Name="requestStatus" ColumnName="requestStatus" />
+          <ScalarProperty Name="request" ColumnName="request" />
+          <ScalarProperty Name="requestAcct" ColumnName="requestAcct" />
+          <ScalarProperty Name="requestID" ColumnName="requestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BT_Entity.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactionEntryTables">
+      <EntityTypeMapping TypeName="BT_Entity.transactionEntryTable">
+        <MappingFragment StoreEntitySet="transactionEntryTable">
+          <ScalarProperty Name="journalID" ColumnName="journalID" />
+          <ScalarProperty Name="acctNo" ColumnName="acctNo" />
+          <ScalarProperty Name="transactionAmount" ColumnName="transactionAmount" />
+          <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+          <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactionStatusTables">
+      <EntityTypeMapping TypeName="BT_Entity.transactionStatusTable">
+        <MappingFragment StoreEntitySet="transactionStatusTable">
+          <ScalarProperty Name="transStatus" ColumnName="transStatus" />
+          <ScalarProperty Name="transStatusID" ColumnName="transStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactionTypeTables">
+      <EntityTypeMapping TypeName="BT_Entity.transactionTypeTable">
+        <MappingFragment StoreEntitySet="transactionTypeTable">
+          <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+          <ScalarProperty Name="transactionTypeID" ColumnName="transactionTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userRoleTables">
+      <EntityTypeMapping TypeName="BT_Entity.userRoleTable">
+        <MappingFragment StoreEntitySet="userRoleTable">
+          <ScalarProperty Name="userRole" ColumnName="userRole" />
+          <ScalarProperty Name="userRoleID" ColumnName="userRoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userStateTables">
+      <EntityTypeMapping TypeName="BT_Entity.userStateTable">
+        <MappingFragment StoreEntitySet="userStateTable">
+          <ScalarProperty Name="userState" ColumnName="userState" />
+          <ScalarProperty Name="userStateID" ColumnName="userStateID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userTables">
+      <EntityTypeMapping TypeName="BT_Entity.userTable">
+        <MappingFragment StoreEntitySet="userTable">
+          <ScalarProperty Name="editedBy" ColumnName="editedBy" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="resetPasswordCode" ColumnName="resetPasswordCode" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userEMail" ColumnName="userEMail" />
+          <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+          <ScalarProperty Name="userLName" ColumnName="userLName" />
+          <ScalarProperty Name="userFName" ColumnName="userFName" />
+          <ScalarProperty Name="lastUpdated" ColumnName="lastUpdated" />
+          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+          <ScalarProperty Name="userStateID" ColumnName="userStateID" />
+          <ScalarProperty Name="userRoleID" ColumnName="userRoleID" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,503 @@
+﻿@model  BookTracker.ViewModel.Transactions
+
+@{
+    if (Session["userFName"] == null)
+    {
+        Html.Display("You must be logged in!");
+        Response.Redirect("~/userTable/Login");
+    }
+    Layout = "~/Views/Shared/_Manager.cshtml";
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js">s</script>
+<script src="~/Content/DataTables/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/DataTables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+
+<html>
+<head class="container-fluid">
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+    <!--Journal Entry Modal Pop-Up Form-->
+
+
+    <div class="modal fade" id="newTransModal">
+
+        <div class="modal-dialog modal-lg" style=" width: auto !important; margin: 0 auto">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Journal Entry</h4>
+                    <a href="#" class="close" data-dismiss="modal" style="color: red">&times;</a>
+                </div>
+                <form id="NewOrderForm">
+                    <div class="modal-body">
+                        @*Customer Details*@
+
+
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+
+                                        <div class="form-group">
+                                            Date
+
+
+                                            <input type="text" id="date" name="debit" placeholder="Debit Amount" class="form-control datepicker" />
+
+
+                                            Journal Type
+                                            <select name="transJournDD" id="transJournDD" class="form-control">
+                                                <option value="">Select Type</option>
+                                                <option value="1">Regular</option>
+                                                <option value="2">Adjusting</option>
+                                                <option value="3">Closing</option>
+                                                <option value="4">Reversing</option>
+                                            </select>
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col">
+                                        <div id="Debits" style="padding-bottom:20px;">
+                                            <div id="credRow">
+                                                <div class="row col-md-11" style="padding-right: 100px;">
+                                                    <div class="col ">
+                                                        Account
+                                                        @Html.DropDownListFor(m => m.acctNo, ViewBag.ListofAccounts as SelectList, "--Select Category", new { @id = "accountDebDD", @class = "form-control", @placeholder = "Account Category" })
+
+
+                                                    </div>
+                                                    <div class="col">
+                                                        Debits
+                                                        <input type="text" id="debAmount" name="debit" placeholder="Debit Amount" class="form-control" />
+                                                    </div>
+                                                    <button href="#" id="addMoreDeb" class="button" style="padding-left:10px; padding-top:20px;">+</button>
+                                                    <!-- <a href="#" id="removeMoreCred" class="button" style="padding-left:5px; padding-top:20px;">-</a> -->
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div id="Credits">
+                                            <div id="rowDeb">
+                                                <div class="row  col-md-11" style="padding-left: 100px;">
+                                                    <div class="col">
+
+                                                        Account
+                                                        @Html.DropDownListFor(m => m.acctNo, ViewBag.ListofAccounts as SelectList, "--Select Category", new { @id = "accountCredDD", @class = "form-control", @placeholder = "Account Category" })
+
+
+                                                    </div>
+                                                    <div class="col">
+                                                        Credit
+                                                        <input type="text" id="creditAmount" name="name" placeholder="Credit Amount" class="form-control" />
+
+
+                                                    </div>
+                                                    <button href="#" id="addMoreCred" class="button" style="padding-left:10px; padding-top:20px;">+</button>
+                                                    <!--<a href="#" id="removeMoreCred" class="button" style="padding-left:5px; padding-top:20px;">-</a> -->
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+                            <table id="detailsTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:auto">Account</th>
+                                        <th style="width:auto">Account No</th>
+                                        <th style="width:auto">Debit</th>
+                                        <th style="width:auto">Credit</th>
+
+                                    </tr>
+
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                            <div class="row form-row">
+                                <div>
+                                    Comments
+                                    <input type="text" id="comments" name="name" placeholder="Comments" class="form-control" />
+
+                                </div>
+                            </div>
+                            <div>
+                                Attachments
+                                <div id="newJournalDropZone" class="dropzone"></div>
+
+                            </div>
+                            <div class="row form-row">
+                                <div>
+                                    <h2 id="error" class="text-danger"> </h2>
+                                </div>
+
+
+                            </div>
+                            <div>
+                                <text style="font-weight: bold"> Sum Of Debits:</text>
+                                <text id="sumDebs"></text>
+
+                            </div>
+                            <div>
+                                <text style="font-weight: bold"> Sum Of Credits:</text>
+                                <text id="sumCred"></text>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <div>
+                                <h2 class="text-danger" id="Error1"></h2>
+                            </div>
+                            <button id="suspendTransactions" class="btn btn-warning m-auto">Save For Later</button>
+                            <button id="resetForm" class="btn btn-dark m-auto">Reset</button>
+                            <button id="saveOrder" type="submit" class="btn btn-success m-auto">Submit</button>
+                            <button type="reset" class="btn btn-danger m-auto" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    <!--List Of Accounts Table-->
+    <div style="width: auto; margin:0 auto; padding-top: 5px" class="table-responsive table table-striped table-bordered">
+
+        <button style="margin-right:10px" class="btn btn-lg btn-primary" onclick="addNewOrder()">New Journal Entry</button>
+        <button style="margin-right:10px" class="btn btn-lg btn-danger" onclick="closeAccounts()">Close Accounts</button>
+        <div class="row" style="padding-left: 15px">
+            <div style="padding: 15px">
+                From:
+                <input class="form-control datepicker" type="text" id="min" placeholder="From Date" />
+
+
+            </div>
+            <div style="padding: 15px">
+                To:
+                <input class="form-control datepicker" type="text" placeholder="To Date" id="max" />
+
+            </div>
+
+            <div style="padding: 15px">
+                Journal Status:
+                <select id="table-filter" class="form-control dropdown">
+                    <option value="">All</option>
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+                    <option>Suspended</option>
+                </select>
+
+
+            </div>
+            <div style="padding: 15px">
+                Journal Type:
+                <select id="table-filter1" class="form-control dropdown">
+                    <option value="">All</option>
+                    <option>Regular</option>
+                    <option>Adjusting</option>
+                    <option>Closing</option>
+                    <option>Reversing</option>
+                </select>
+            </div>
+        </div>
+        <!--List Of Journal Table-->
+        <table id="journalTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th></th>
+                    <th>Date Prepared</th>
+                    <th>Journal Type</th>
+                    <th>Comments</th>
+                    <th>Prepared By</th>
+
+                    <th>Total Debits</th>
+                    <th>Total Credits</th>
+                    <th>Status</th>
+                    <th></th>
+
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Date Prepared</th>
+                    <th>Journal Type</th>
+                    <th>Comments</th>
+                    <th>Prepared By</th>
+
+                    <th>Total Debits</th>
+                    <th>Total Credits</th>
+                    <th>Status</th>
+                    <th></th>
+
+
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="modal fade" id="transModal">
+        <div class="modal-dialog">
+            <div class="modal-content embed-responsive">
+                <div class="modal-header">
+
+                    <h4 style="padding-right: 5px">Transactions</h4>
+                    <a href="#" class="close text-danger" data-dismiss="modal">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <table id="transDebTable" class="table-condensed" style="margin:auto; width: 100%; border-top: 0; border-bottom: 0;">
+
+                        <thead class="thead">
+                            <tr style="text-align: center">
+                                <th style="text-align: left">Account</th>
+                                <th>Transaction Type</th>
+                                <th>Amount</th>
+
+                            </tr>
+                        </thead>
+
+                    </table>
+                    <table id="transCredTable" class="table-condensed" style="margin:auto; width: 100%; border-top: 0; border-bottom: 0;">
+
+                        <tr style="text-align: center">
+                            <th>Account</th>
+                            <th>Transaction Type</th>
+                            <th>Amount</th>
+
+                        </tr>
+
+
+                    </table>
+
+                    <table id="filesTable" class="attachTable">
+                        <tr>
+                            <th>File Name</th>
+                            <th>Download</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ConfirmApprove" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class='modal-header'>
+                    <h4 id="modalTitle"></h4>
+                    <a href="#" class="close" data-dismiss="modal" style="color:red">&times;</a>
+                </div>
+                <div class="modal-body">
+
+                    <h4>
+                        Are You Sure You Want To Approve This Journal?
+
+
+                    </h4>
+                    <h2 id="journalID"> </h2>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-block btn-success" onclick="approvalJournal()">Approve</a>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="ConfirmCloseApproval" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class='modal-header'>
+                    <h4 id="modalTitle"></h4>
+                    <a href="#" class="close" data-dismiss="modal" style="color:red">&times;</a>
+                </div>
+                <div class="modal-body">
+
+                    <h4>
+                        Are You Sure You Want To Approve This Journal?
+
+
+                    </h4>
+                    <h2 id="journalID"> </h2>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-block btn-success" onclick="closeJournalAccounts()">Approve</a>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="ConfirmReject" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class='modal-header'>
+                    <h4 id="modalTitle"></h4>
+                    <a href="#" class="close" data-dismiss="modal" style="color:red">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <h2 id="journalID" class="hide"></h2>
+                    <h4>
+                        Are You Sure You Want To Reject This Journal?
+
+
+                    </h4>
+                    <h2 id="journalID"> </h2>
+                    Reason:
+                    <input type="text" id="reason" class="form-control">
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-block btn-danger" onclick="rejectionJournal()">Reject</a>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="ConfirmSuspend" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class='modal-header'>
+                    <h4 id="modalTitle"></h4>
+                    <a href="#" class="close" data-dismiss="modal" style="color:red">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <h2 id="journalID" class="hide"></h2>
+                    <h4>
+                        Are You Sure You Want To Suspend This Journal?
+
+
+                    </h4>
+                    <h2 id="journalID"> </h2>
+                    Reason:
+                    <input type="text" id="reasonSus" class="form-control">
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-block btn-warning" onclick="suspensionJournal()">Suspend</a>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="closeModal">
+        <div class="modal-dialog modal-lg" style=" width: 1500px !important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 style="padding-right: 5px">Closing Entry</h4>
+                    <a href="#" class="close text-danger" data-dismiss="modal">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <table id="closingEntryTable" class="transTable1">
+
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Account</th>
+                                <th>Transaction Type</th>
+                                <th>Amount</th>
+
+                            </tr>
+                        </thead>
+
+                    </table>
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-lg btn-success" onclick="postClosingEntry()">Close Accounts</a>
+                    <button type="reset" class="btn  btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+</html>
+
+
+<link href="~/Scripts/dropzone/basic.min.css" rel="stylesheet" />
+<link href="~/Scripts/dropzone/dropzone.min.css" rel="stylesheet" />
+<style>
+    .transTable1 thead th {
+        border-bottom: 0;
+        border: 0 !important;
+    }
+
+    .transTable thead th {
+        border-bottom: 0;
+        border: 0 !important;
+    }
+</style>
+
+<script src="~/Scripts/dropzone/dropzone.min.js"></script>
+<script>
+
+    var fileDropZone = new Dropzone("div#newJournalDropZone", {
+        url: "/Blob/UploadBlob?journalID=123",
+        autoProcessQueue: false,
+        parallelUploads: 10,
+        maxFiles: 10,
+        maxFilesize: 50, //file size in MB
+        uploadMultiple: true,
+        addRemoveLinks: true,
+        acceptedFiles: ".txt,.csv,.pdf, image/*, .docx, .xlsx",
+
+    });
+
+
+
+
+
+
+</script>
+<script src="~/OurScripts/manager.Journal.js"></script>

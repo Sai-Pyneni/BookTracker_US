@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Login" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="userTable">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userRole" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isActive" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userFName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userLName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResetPasswordCode" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="EditedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="userTables" EntityType="Self.userTable" />
+  </EntityContainer>
+</Schema>

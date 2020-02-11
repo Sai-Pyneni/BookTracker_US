@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.date = DateTime.Now.ToString("MMMM dd, yyyy");
+    Layout = "~/Views/Shared/_Accountant.cshtml";
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Content/DataTables/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/DataTables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <!--Add Text Box Script-->
+
+
+
+</head>
+<body>
+    <button id="printButton" onclick="print()">Save</button>
+    <div style="width: 50%; margin:0 auto" class="embed-responsive-item">
+        <div style="text-align: center; font-size: 20px; padding: 0">
+            <p style="line-height:100%">
+                @ViewBag.title <br />
+                @ViewBag.statement <br />
+                For the Period Ending  @ViewBag.date
+            </p>
+
+            <hr style="font-weight: bold" />
+        </div>
+
+        <table class="table-condensed" style="margin:auto; width: 100%"  id="initialBalance">
+
+            <tbody>
+                <tr></tr>
+            </tbody>
+
+        </table>
+        
+        <table class="table-condensed" style="margin:auto; width: 100%"  id="income">
+            <tbody>
+                <tr></tr>
+            </tbody>
+
+        </table>
+       
+        <table class="table-condensed" style="margin:auto; width: 100%"  id="debits">
+
+            <tbody>
+                <tr></tr>
+            </tbody>
+
+        </table>
+       
+
+        <table class="table-condensed" style="margin:auto; width: 100%"  id="balance">
+            <tbody>
+                <tr></tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+
+</body>
+</html>
+<script src="~/OurScripts/common.StatementOfRetainedEarnings.js"></script>
+<style>
+
+
+    .hdh {
+    }
+
+    table {
+        padding: 0px;
+        border-style: none;
+        background: none;
+        border-bottom: 0px !important;
+        border: 0px !important;
+        border-color: white;
+    }
+
+        table tbody {
+            border-style: none;
+        }
+
+    hr {
+        border: none;
+        height: 2px;
+        /* Set the hr color */
+        color: #333; /* old IE */
+        background-color: #333; /* Modern Browsers */
+    }
+</style>
